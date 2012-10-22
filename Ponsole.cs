@@ -10,6 +10,8 @@ using System;
 using System.Reflection;
 using System.Collections.Generic;
 
+using System.Diagnostics;
+
 namespace PonsoleLib
 {
 	/// <summary>
@@ -197,5 +199,48 @@ namespace PonsoleLib
 			return "1.0.0";
 		}
         #endregion
+        
+        #region Run DOS Command
+        public static string RunDosCommand( string cmd ){
+        	try{
+        		Process p = new Process();
+        		p.StartInfo.CreateNoWindow = true;
+        		p.StartInfo.FileName = "cmd.exe";
+        		p.StartInfo.Arguments = "/c " + cmd;
+        		p.StartInfo.RedirectStandardOutput = true;
+        		p.StartInfo.RedirectStandardInput = false;
+        		p.StartInfo.UseShellExecute = false;
+        		p.Start();
+        		p.WaitForExit();
+        		string temp = p.StandardOutput.ReadToEnd();
+        		p.Close();
+        		return temp;
+        	}catch(Exception e){
+        		Ponsole.SetStatusText(e.Message,true);
+        		return string.Empty;
+        	}
+        }
+        
+        public static string RunDosCommand( string cmd, int timeout ){
+        	try{
+        		Process p = new Process();
+        		p.StartInfo.CreateNoWindow = true;
+        		p.StartInfo.FileName = "cmd.exe";
+        		p.StartInfo.Arguments = "/c " + cmd;
+        		p.StartInfo.RedirectStandardOutput = true;
+        		p.StartInfo.RedirectStandardInput = false;
+        		p.StartInfo.UseShellExecute = false;
+        		p.Start();
+        		p.WaitForExit(timeout);
+        		string temp = p.StandardOutput.ReadToEnd();
+        		p.Close();
+        		return temp;
+        	}catch(Exception e){
+        		Ponsole.SetStatusText(e.Message,true);
+        		return string.Empty;
+        	}
+        }
+        #endregion
+        
 	}
 }

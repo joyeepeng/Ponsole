@@ -30,6 +30,11 @@ namespace PonsoleTest
 			Thread.Sleep(1000);
 			Ponsole.SetStatusText("Exception happened.",true);
 			
+			Ponsole.Print("Now will open notpad.exe",true);
+			Thread.Sleep(2000);
+			Ponsole.RunDosCommand("notepad.exe");
+			Ponsole.SetStatusText("Has opened notepad.",false);
+			
 			// TODO: Implement Functionality Here
 		
 			Console.ReadKey(true);

@@ -26,13 +26,16 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ItemGroup>
-    <Reference Include="Ponsole">
-      <HintPath>bin\Release\Ponsole.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ponsole.csproj">
+      <Project>{3A3EE4AA-CEAF-4A40-89EB-340EB428CECE}</Project>
+      <Name>Ponsole</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
